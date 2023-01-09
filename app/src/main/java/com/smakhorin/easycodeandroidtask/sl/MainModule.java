@@ -64,8 +64,7 @@ public class MainModule implements Module<MainViewModel>, ProvideTimeIntervalPar
                     new PetsDomain.Mapper.Base(
                             new PetsDateParser.Base(),
                             new PetsDateFormatter.Base(),
-                            new ImageDecoder.Pets(),
-                            new ImageDownloader.Base()
+                            new ImageDecoder.Pets()
                     )
                 ),
                 coreModule.provideProgressCommunication()

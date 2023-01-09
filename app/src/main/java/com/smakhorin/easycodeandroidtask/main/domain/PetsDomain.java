@@ -40,13 +40,10 @@ public interface PetsDomain {
 
             private final Pets.Mapper<PetUi> petsMapper;
 
-            private final ImageDownloader imageDownloader;
-
-            public Base(PetsDateParser petsDateParser, PetsDateFormatter petsDateFormatter, ImageDecoder petsImageDecoder, ImageDownloader imageDownloader) {
+            public Base(PetsDateParser petsDateParser, PetsDateFormatter petsDateFormatter, ImageDecoder petsImageDecoder) {
                 this.petsDateParser = petsDateParser;
                 this.petsDateFormatter = petsDateFormatter;
                 this.petsImageDecoder = petsImageDecoder;
-                this.imageDownloader = imageDownloader;
                 ImageDecoder imageDecoder = new ImageDecoder.Pets();
                 petsMapper = new Pets.Mapper.Base(petsDateFormatter, petsDateParser, imageDecoder);
             }
