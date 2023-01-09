@@ -54,16 +54,8 @@ public interface PetsDomain {
             @Override
             public MainUi map(List<Pets> petsList) {
                 List<ItemUi> uiList = new ArrayList<>(petsList.size());
-//                List<String> imageUrls = new ArrayList<>(petsList.size());
-//                for(Pets p : petsList) {
-//                    imageUrls.add(p.getImageUrl());
-//                }
-//                List<Bitmap> bitmaps = imageDownloader.downloadImages(imageUrls);
-//                for (int i = 0; i < petsList.size(); i++) {
-//                    uiList.add(petsList.get(i).map(petsMapper, bitmaps.get(i)));
-//                }
                 for (Pets pets : petsList) {
-                    uiList.add(pets.oldMap(petsMapper));
+                    uiList.add(pets.map(petsMapper));
                 }
                 return new MainUi.Base(uiList);
             }

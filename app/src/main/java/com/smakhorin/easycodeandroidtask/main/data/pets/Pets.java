@@ -1,8 +1,6 @@
 package com.smakhorin.easycodeandroidtask.main.data.pets;
 
 
-import android.graphics.Bitmap;
-
 import com.smakhorin.easycodeandroidtask.main.domain.ImageDecoder;
 import com.smakhorin.easycodeandroidtask.main.domain.PetsDateFormatter;
 import com.smakhorin.easycodeandroidtask.main.domain.PetsDateParser;
@@ -12,26 +10,12 @@ import java.io.Serializable;
 
 public interface Pets {
 
-    String getImageUrl();
-
-    <T> T map(Mapper<T> mapper, Bitmap bitmap);
-
-    <T> T oldMap(Mapper<T> mapper);
+    <T> T map(Mapper<T> mapper);
 
     class Empty implements Serializable, Pets {
 
         @Override
-        public String getImageUrl() {
-            return null;
-        }
-
-        @Override
-        public <T> T map(Mapper<T> mapper, Bitmap bitmap) {
-            return mapper.update(null, null, null, null);
-        }
-
-        @Override
-        public <T> T oldMap(Mapper<T> mapper) {
+        public <T> T map(Mapper<T> mapper) {
             return null;
         }
     }
@@ -50,17 +34,7 @@ public interface Pets {
         }
 
         @Override
-        public String getImageUrl() {
-            return imageUrl;
-        }
-
-        @Override
-        public <T> T map(Mapper<T> mapper, Bitmap bitmap) {
-            return mapper.update(bitmap, title, contentUrl, dateAdded);
-        }
-
-        @Override
-        public <T> T oldMap(Mapper<T> mapper) {
+        public <T> T map(Mapper<T> mapper) {
             return mapper.map(imageUrl, title, contentUrl, dateAdded);
         }
     }
@@ -68,21 +42,7 @@ public interface Pets {
     interface Mapper<T> {
         T map(String imageUrl, String title, String contentUrl, String dateAdded);
 
-        T update(Bitmap image, String title, String contentUrl, String dateAdded);
-
-        abstract class Abstract implements Mapper<PetUi> {
-            @Override
-            public PetUi map(String imageUrl, String title, String contentUrl, String dateAdded) {
-                return null;
-            }
-
-            @Override
-            public PetUi update(Bitmap image, String title, String contentUrl, String dateAdded) {
-                return null;
-            }
-        }
-
-        class Base extends Abstract {
+        class Base implements Mapper<PetUi> {
 
             private final PetsDateFormatter petsDateFormatter;
 
@@ -101,16 +61,6 @@ public interface Pets {
             public PetUi map(String imageUrl, String title, String contentUrl, String dateAdded) {
                 return new PetUi(
                     imageDecoder.decodeImage(imageUrl),
-                    title,
-                    contentUrl,
-                    petsDateFormatter.format(petsDateParser.convert(dateAdded))
-                );
-            }
-
-            @Override
-            public PetUi update(Bitmap image, String title, String contentUrl, String dateAdded) {
-                return new PetUi(
-                    image,
                     title,
                     contentUrl,
                     petsDateFormatter.format(petsDateParser.convert(dateAdded))
