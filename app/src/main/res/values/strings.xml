@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">easycodeandroidtask</string>
+    <string name="chat">Chat</string>
+    <string name="call">Call</string>
+    <string name="work_hours">Office Hours:%s</string>
+    <string name="str_chat">Chat</string>
+    <string name="str_call">Call</string>
+    <string name="unexpected_error_message">Unexpected error happened!</string>
+    <string name="json_error_message">JSON parsing error happened!</string>
+    <string name="io_error_message">File reading error happened!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pet_icon">Pet icon</string>
+</resources>

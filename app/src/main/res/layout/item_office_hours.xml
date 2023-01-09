@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.smakhorin.easycodeandroidtask.core.ui.BaseFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/bkg_border"
+    android:layout_height="wrap_content">
+
+    <com.smakhorin.easycodeandroidtask.core.ui.BaseTextView
+        android:id="@+id/officeHoursTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="center"
+        android:text="Office Hours: M-F 10:00-18:00"/>
+</com.smakhorin.easycodeandroidtask.core.ui.BaseFrameLayout>
