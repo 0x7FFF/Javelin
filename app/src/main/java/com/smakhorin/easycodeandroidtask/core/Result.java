@@ -4,6 +4,6 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-public interface Supplier<T> {
+public interface Result<T> {
     T get() throws JSONException, IOException;
 }

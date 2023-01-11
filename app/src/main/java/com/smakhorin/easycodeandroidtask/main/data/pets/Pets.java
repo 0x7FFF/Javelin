@@ -62,8 +62,8 @@ public interface Pets {
                 return new PetUi(
                     imageDecoder.decodeImage(imageUrl).createBitmap(),
                     title,
-                    petsDateFormatter.format(petsDateParser.convert(dateAdded)),
-                    contentUrl
+                    contentUrl,
+                    petsDateFormatter.format(petsDateParser.convert(dateAdded))
                 );
             }
         }

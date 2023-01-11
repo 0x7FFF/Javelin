@@ -1,10 +1,10 @@
 package com.smakhorin.easycodeandroidtask.main.data;
 
-import com.smakhorin.easycodeandroidtask.core.Supplier;
+import com.smakhorin.easycodeandroidtask.core.Result;
 import com.smakhorin.easycodeandroidtask.core.data.HandleError;
 
 public interface DataSource {
-    <T> T handle(Supplier<T> ret) throws Exception;
+    <T> T handle(Result<T> ret) throws Exception;
 
     abstract class Abstract implements DataSource {
 
@@ -15,7 +15,7 @@ public interface DataSource {
         }
 
         @Override
-        public <T> T handle(Supplier<T> ret) throws Exception {
+        public <T> T handle(Result<T> ret) throws Exception {
             try {
                 return ret.get();
             } catch (Exception ex) {
