@@ -2,8 +2,12 @@ package com.smakhorin.easycodeandroidtask.main.presentation.adapter;
 
 import android.graphics.Bitmap;
 
+import androidx.annotation.Nullable;
+
 import com.smakhorin.easycodeandroidtask.core.ui.BaseView;
 import com.smakhorin.easycodeandroidtask.core.ui.ItemUi;
+
+import java.util.Objects;
 
 public class PetUi implements ItemUi {
     private final Bitmap image;
@@ -40,5 +44,20 @@ public class PetUi implements ItemUi {
     @Override
     public String content() {
         return url;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object other) {
+        if (other == null || getClass() != other.getClass()) return false;
+        PetUi otherClass = (PetUi) other;
+        return Objects.equals(image, otherClass.image) &&
+            Objects.equals(name, otherClass.name) &&
+            Objects.equals(date, otherClass.date) &&
+            Objects.equals(url, otherClass.url);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(image, name, date, url);
     }
 }

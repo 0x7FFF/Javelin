@@ -60,10 +60,10 @@ public interface Pets {
             @Override
             public PetUi map(String imageUrl, String title, String contentUrl, String dateAdded) {
                 return new PetUi(
-                    imageDecoder.decodeImage(imageUrl),
+                    imageDecoder.decodeImage(imageUrl).createBitmap(),
                     title,
-                    contentUrl,
-                    petsDateFormatter.format(petsDateParser.convert(dateAdded))
+                    petsDateFormatter.format(petsDateParser.convert(dateAdded)),
+                    contentUrl
                 );
             }
         }
