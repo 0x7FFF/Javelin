@@ -1,8 +1,12 @@
 package com.smakhorin.easycodeandroidtask.main.data.config;
 
+import androidx.annotation.Nullable;
+
+import com.smakhorin.easycodeandroidtask.main.data.pets.Pet;
 import com.smakhorin.easycodeandroidtask.main.domain.ConfigDomain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public interface Config {
 
@@ -30,6 +34,20 @@ public interface Config {
         @Override
         public <T> T map(Mapper<T> mapper) {
             return mapper.map(isChatEnabled,isCallEnabled,workHours);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(isChatEnabled, isCallEnabled, workHours);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object other) {
+            if (other == null || getClass() != other.getClass()) return false;
+            Config.Base otherClass = (Config.Base) other;
+            return Objects.equals(isChatEnabled, otherClass.isChatEnabled) &&
+                Objects.equals(isCallEnabled, otherClass.isCallEnabled) &&
+                Objects.equals(workHours, otherClass.workHours);
         }
     }
 

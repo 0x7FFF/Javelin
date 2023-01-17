@@ -29,7 +29,7 @@ public class MainFragment extends BackPress.Fragment<MainUi, MainViewModel> {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        MainAdapter.Real mainAdapter = new MainAdapter.Real();
+        MainAdapter.Base mainAdapter = new MainAdapter.Base();
         recyclerView.setAdapter(mainAdapter);
 
         viewModel.observe(this, mainUi -> mainUi.map(mainAdapter));

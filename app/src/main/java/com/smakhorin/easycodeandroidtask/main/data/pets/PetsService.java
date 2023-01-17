@@ -2,8 +2,8 @@ package com.smakhorin.easycodeandroidtask.main.data.pets;
 
 import androidx.annotation.RawRes;
 
+import com.smakhorin.easycodeandroidtask.core.domain.JSONWrapper;
 import com.smakhorin.easycodeandroidtask.main.data.FileReader;
-import com.smakhorin.easycodeandroidtask.main.domain.ImageDownloader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,10 +25,10 @@ public interface PetsService {
 
         @Override
         public PetsList data(int fileRawId) throws IOException, JSONException {
-            JSONObject rawData = jsonReader.readRawFile(fileRawId);
+            JSONWrapper rawData = jsonReader.readRawFile(fileRawId);
             JSONArray pets = rawData.getJSONArray("pets");
             pets.remove(pets.length()-1); // Eliminate null entry.
-            ArrayList<Pets> result = new ArrayList<>(pets.length());
+            ArrayList<Pet> result = new ArrayList<>(pets.length());
 
             for (int i = 0; i < pets.length(); i++) {
                 JSONObject petObject = pets.getJSONObject(i);
@@ -37,7 +37,7 @@ public interface PetsService {
                 String contentUrl = petObject.getString("content_url");
                 String dateAdded = petObject.getString("date_added");
                 result.add(
-                    new Pets.Base(imageUrl,title,contentUrl,dateAdded)
+                    new Pet.Base(imageUrl,title,contentUrl,dateAdded)
                 );
             }
             return new PetsList.Base(result);

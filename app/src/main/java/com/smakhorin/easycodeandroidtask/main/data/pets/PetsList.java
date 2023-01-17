@@ -1,11 +1,13 @@
 package com.smakhorin.easycodeandroidtask.main.data.pets;
 
-import com.smakhorin.easycodeandroidtask.main.domain.ImageDownloader;
+import androidx.annotation.Nullable;
+
 import com.smakhorin.easycodeandroidtask.main.domain.PetsDomain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public interface PetsList {
     <T> T map(Mapper<T> mapper);
@@ -19,24 +21,47 @@ public interface PetsList {
     }
 
     class Base implements Serializable, PetsList {
-        private final List<Pets> petsList;
+        private final List<Pet> petList;
 
-        public Base(List<Pets> petsList) {
-            this.petsList = petsList;
+        public Base(List<Pet> petList) {
+            this.petList = petList;
         }
 
         @Override
         public <T> T map(Mapper<T> mapper) {
-            return mapper.map(petsList);
+            return mapper.map(petList);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(petList);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object other) {
+            if (other == null || getClass() != other.getClass()) return false;
+            PetsList.Base otherClass = (PetsList.Base) other;
+            if (petList.size() != otherClass.petList.size()) return false;
+
+            boolean ret = true;
+            for (int i = 0; i < petList.size(); i++) {
+                Pet pet = petList.get(i);
+                Pet otherPet = otherClass.petList.get(i);
+                if (!pet.equals(otherPet)) {
+                    ret = false;
+                    break;
+                }
+            }
+            return ret;
         }
     }
 
     interface Mapper<T> {
-        T map(List<Pets> pets);
+        T map(List<Pet> pets);
 
         class Base implements Mapper<PetsDomain> {
             @Override
-            public PetsDomain map(List<Pets> pets) {
+            public PetsDomain map(List<Pet> pets) {
                 return new PetsDomain.Base(pets);
             }
         }

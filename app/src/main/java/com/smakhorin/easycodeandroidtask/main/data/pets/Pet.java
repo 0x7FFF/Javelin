@@ -1,18 +1,21 @@
 package com.smakhorin.easycodeandroidtask.main.data.pets;
 
 
+import androidx.annotation.Nullable;
+
 import com.smakhorin.easycodeandroidtask.main.domain.ImageDecoder;
 import com.smakhorin.easycodeandroidtask.main.domain.PetsDateFormatter;
 import com.smakhorin.easycodeandroidtask.main.domain.PetsDateParser;
 import com.smakhorin.easycodeandroidtask.main.presentation.adapter.PetUi;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-public interface Pets {
+public interface Pet {
 
     <T> T map(Mapper<T> mapper);
 
-    class Empty implements Serializable, Pets {
+    class Empty implements Serializable, Pet {
 
         @Override
         public <T> T map(Mapper<T> mapper) {
@@ -20,7 +23,7 @@ public interface Pets {
         }
     }
 
-    class Base implements Serializable, Pets {
+    class Base implements Serializable, Pet {
         private final String imageUrl;
         private final String title;
         private final String contentUrl;
@@ -36,6 +39,21 @@ public interface Pets {
         @Override
         public <T> T map(Mapper<T> mapper) {
             return mapper.map(imageUrl, title, contentUrl, dateAdded);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(imageUrl, title, contentUrl, dateAdded);
+        }
+
+        @Override
+        public boolean equals(@Nullable Object other) {
+            if (other == null || getClass() != other.getClass()) return false;
+            Pet.Base otherClass = (Pet.Base) other;
+            return Objects.equals(imageUrl, otherClass.imageUrl) &&
+                Objects.equals(title, otherClass.title) &&
+                Objects.equals(contentUrl, otherClass.contentUrl) &&
+                Objects.equals(dateAdded, otherClass.dateAdded);
         }
     }
 
@@ -62,8 +80,8 @@ public interface Pets {
                 return new PetUi(
                     imageDecoder.decodeImage(imageUrl).createBitmap(),
                     title,
-                    contentUrl,
-                    petsDateFormatter.format(petsDateParser.convert(dateAdded))
+                    petsDateFormatter.format(petsDateParser.convert(dateAdded)),
+                    contentUrl
                 );
             }
         }

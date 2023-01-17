@@ -15,7 +15,6 @@ import com.smakhorin.easycodeandroidtask.main.domain.ConfigTimeIntervalParser;
 import com.smakhorin.easycodeandroidtask.main.data.TimeIntervalNow;
 import com.smakhorin.easycodeandroidtask.main.domain.ConfigDomain;
 import com.smakhorin.easycodeandroidtask.main.domain.ImageDecoder;
-import com.smakhorin.easycodeandroidtask.main.domain.ImageDownloader;
 import com.smakhorin.easycodeandroidtask.main.domain.MainInteractor;
 import com.smakhorin.easycodeandroidtask.main.domain.PetsDateFormatter;
 import com.smakhorin.easycodeandroidtask.main.domain.PetsDateParser;
@@ -59,7 +58,7 @@ public class MainModule implements Module<MainViewModel>, ProvideTimeIntervalPar
                 new MainInteractor.Base(
                     handleError,
                     configRepository,
-                    new ConfigDomain.Mapper.Base(configDataSource, configTimeIntervalParser, timeIntervalNow),
+                    new ConfigDomain.Mapper.Base(configTimeIntervalParser, timeIntervalNow),
                     petsRepository,
                     new PetsDomain.Mapper.Base(
                             new PetsDateParser.Base(),

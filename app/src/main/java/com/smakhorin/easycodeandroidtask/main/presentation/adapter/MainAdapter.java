@@ -4,8 +4,8 @@ import com.smakhorin.easycodeandroidtask.core.ui.adapter.GenericAdapter;
 import com.smakhorin.easycodeandroidtask.core.ui.adapter.ViewHolderFactoryChain;
 
 public interface MainAdapter {
-    class Real extends GenericAdapter.Base {
-        public Real() {
+    class Base extends GenericAdapter.Base {
+        public Base() {
             super(
                 new ButtonsViewHolderFactoryChain(
                     new TextViewHolderFactoryChain(
