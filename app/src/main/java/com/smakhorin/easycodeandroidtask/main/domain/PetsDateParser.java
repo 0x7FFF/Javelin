@@ -8,11 +8,23 @@ public interface PetsDateParser {
     Date convert(String input);
 
     class Base implements PetsDateParser {
-        private static final String INPUT_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
+        private final SimpleDateFormat simpleDateFormat;
+
+        public Base() {
+            this(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+        }
+
+        public Base(String inputFormat) {
+            this(new SimpleDateFormat(inputFormat));
+        }
+
+        public Base(SimpleDateFormat simpleDateFormat) {
+            this.simpleDateFormat = simpleDateFormat;
+        }
 
         @Override
         public Date convert(String input) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(INPUT_FORMAT);
             try {
                 return simpleDateFormat.parse(input);
             } catch (ParseException e) {

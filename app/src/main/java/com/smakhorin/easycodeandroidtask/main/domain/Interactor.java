@@ -1,16 +1,13 @@
 package com.smakhorin.easycodeandroidtask.main.domain;
 
-import com.smakhorin.easycodeandroidtask.core.Callback0;
 import com.smakhorin.easycodeandroidtask.core.Callback1;
 import com.smakhorin.easycodeandroidtask.core.data.HandleError;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
 
 public interface Interactor {
 
@@ -21,17 +18,17 @@ public interface Interactor {
 
     abstract class Abstract implements Interactor {
 
-        private final ThreadPoolExecutor executor = new ThreadPoolExecutor(
-                4, 4, 100, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
-
-        private final ReentrantLock lock = new ReentrantLock();
+        private final ThreadPoolExecutor executor;
 
         private final HandleError handleError;
 
-        private CountDownLatch countDownLatch;
-
         public Abstract(HandleError handleError) {
+            this(handleError, new ThreadPoolExecutor(4, 4, 100, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>()));
+        }
+
+        public Abstract(HandleError handleError, ThreadPoolExecutor threadPoolExecutor) {
             this.handleError = handleError;
+            this.executor = threadPoolExecutor;
             executor.prestartAllCoreThreads();
         }
 

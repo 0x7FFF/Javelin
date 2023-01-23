@@ -20,8 +20,15 @@ public interface ImageDownloader {
 
         private static final int NUM_THREADS = 5;
 
-        private static final ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
+        private ExecutorService executor;
 
+        public Base() {
+            this(Executors.newFixedThreadPool(NUM_THREADS));
+        }
+
+        public Base(ExecutorService executor) {
+            this.executor = executor;
+        }
         @Override
         public List<Bitmap> downloadImages(List<String> imageUrls) {
             List<Future<Bitmap>> futures = new ArrayList<>();
