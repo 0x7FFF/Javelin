@@ -8,7 +8,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import com.smakhorin.easycodeandroidtask.core.Callback0;
+import com.smakhorin.easycodeandroidtask.core.callback.Callback0;
 import com.smakhorin.easycodeandroidtask.core.communication.Communication;
 
 import java.util.concurrent.CountDownLatch;

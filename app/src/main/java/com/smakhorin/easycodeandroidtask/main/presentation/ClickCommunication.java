@@ -3,12 +3,12 @@ package com.smakhorin.easycodeandroidtask.main.presentation;
 import androidx.lifecycle.MutableLiveData;
 
 import com.smakhorin.easycodeandroidtask.core.communication.Communication;
-import com.smakhorin.easycodeandroidtask.core.ui.MainUi;
 
-public interface MainCommunication extends Communication.Mutable<MainUi> {
+public interface ClickCommunication extends Communication.Mutable<Boolean> {
 
-    class Base extends Communication.UiUpdate<MainUi> implements MainCommunication {
-        public Base(MutableLiveData<MainUi> mutableLiveData) {
+    class Base extends Communication.UiUpdate<Boolean> implements ClickCommunication {
+
+        public Base(MutableLiveData<Boolean> mutableLiveData) {
             super(mutableLiveData);
         }
 

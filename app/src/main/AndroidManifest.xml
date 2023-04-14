@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Easycodeandroidtask"
         tools:targetApi="31">
         <activity
-            android:name=".StartActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

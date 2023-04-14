@@ -1,4 +1,4 @@
-package com.smakhorin.easycodeandroidtask.core;
+package com.smakhorin.easycodeandroidtask.core.factory;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;

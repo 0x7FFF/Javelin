@@ -7,12 +7,13 @@ import androidx.annotation.NonNull;
 import com.smakhorin.easycodeandroidtask.core.CanGoBack;
 import com.smakhorin.easycodeandroidtask.core.ResourceManager;
 import com.smakhorin.easycodeandroidtask.core.communication.GlobalErrorCommunication;
+import com.smakhorin.easycodeandroidtask.core.communication.NavigationCommunication;
 import com.smakhorin.easycodeandroidtask.core.communication.ProgressCommunication;
 import com.smakhorin.easycodeandroidtask.main.data.FileReader;
 
 import java.io.InputStream;
 
-public interface CoreModule extends ResourceManager, ProvideBackHandler, ProvideProgressCommunication, ProvideGlobalErrorCommunication, ProvideJsonReader {
+public interface CoreModule extends ResourceManager, ProvideBackHandler, ProvideProgressCommunication, ProvideGlobalErrorCommunication, ProvideJsonReader, ProvideNavigationCommunication {
 
     class Base implements CoreModule {
 
@@ -28,6 +29,8 @@ public interface CoreModule extends ResourceManager, ProvideBackHandler, Provide
 
         private final FileReader.Json jsonReader;
 
+        private final NavigationCommunication.Mutable navigationCommunication;
+
         public Base(@NonNull Context context) {
             this.context = context;
 
@@ -35,6 +38,7 @@ public interface CoreModule extends ResourceManager, ProvideBackHandler, Provide
             backHandler = new CanGoBack.Callback.Base();
             communication = new GlobalErrorCommunication.Base();
             progress = new ProgressCommunication.Base();
+            navigationCommunication = new NavigationCommunication.Base();
             jsonReader = new FileReader.Json(resourceManager);
         }
 
@@ -67,6 +71,11 @@ public interface CoreModule extends ResourceManager, ProvideBackHandler, Provide
         public FileReader.Json provideJsonReader() {
             return jsonReader;
         }
+
+        @Override
+        public NavigationCommunication.Mutable provideNavigationCommunication() {
+            return navigationCommunication;
+        }
     }
 }
 
@@ -84,4 +93,8 @@ interface ProvideProgressCommunication {
 
 interface ProvideJsonReader {
     FileReader.Json provideJsonReader();
+}
+
+interface ProvideNavigationCommunication {
+    NavigationCommunication.Mutable provideNavigationCommunication();
 }

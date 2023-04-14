@@ -1,6 +1,5 @@
 package com.smakhorin.easycodeandroidtask.core.communication;
 
-
 import androidx.lifecycle.MutableLiveData;
 
 import com.smakhorin.easycodeandroidtask.core.Visibility;

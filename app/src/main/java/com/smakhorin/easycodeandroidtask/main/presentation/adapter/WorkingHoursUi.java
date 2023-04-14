@@ -5,14 +5,7 @@ import com.smakhorin.easycodeandroidtask.core.ui.ItemUi;
 
 public class WorkingHoursUi extends ItemUi.Static {
 
-    private final boolean workingHours;
-
     public static final Integer TYPE = 2;
-
-    public WorkingHoursUi(boolean workingHours) {
-        this.workingHours = workingHours;
-    }
-
 
     @Override
     public Integer type() {
@@ -21,6 +14,5 @@ public class WorkingHoursUi extends ItemUi.Static {
 
     @Override
     public void show(BaseView... views) {
-        views[0].changeIsVisible(workingHours);
     }
 }

@@ -7,9 +7,9 @@ import android.widget.ProgressBar;
 
 import com.smakhorin.easycodeandroidtask.core.presentation.BackPress;
 import com.smakhorin.easycodeandroidtask.core.presentation.BaseFragmentFactory;
-import com.smakhorin.easycodeandroidtask.core.FragmentFactory;
+import com.smakhorin.easycodeandroidtask.core.factory.FragmentFactory;
 
-public class StartActivity extends BackPress.Activity<StartActivityViewModel> implements ProvideViewModel {
+public class MainActivity extends BackPress.Activity<MainActivityViewModel> implements ProvideViewModel {
 
     private final String TAG = "MainActivity";
 
@@ -22,7 +22,7 @@ public class StartActivity extends BackPress.Activity<StartActivityViewModel> im
 
         fragmentFactory = new BaseFragmentFactory(R.id.container, getSupportFragmentManager());
 
-        viewModel = provideViewModel(StartActivityViewModel.class, this);
+        viewModel = provideViewModel(MainActivityViewModel.class, this);
 
         viewModel.observeNavigation(this, navigationScreen -> fragmentFactory.fragment(navigationScreen));
 

@@ -1,6 +1,9 @@
 package com.smakhorin.easycodeandroidtask.core;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
 import com.smakhorin.easycodeandroidtask.ShowScreen;
@@ -11,10 +14,16 @@ abstract public class NavigationScreen implements ShowScreen, Matches<Navigation
     private final Class<? extends BaseFragment<?>> clazz;
     private final ShowStrategy strategy;
 
-    public NavigationScreen(@NonNull String id, @NonNull Class<? extends BaseFragment<?>> clazz, @NonNull ShowStrategy strategy) {
+    private final Bundle args;
+
+    public NavigationScreen(@NonNull String id,
+                            @NonNull Class<? extends BaseFragment<?>> clazz,
+                            @NonNull ShowStrategy strategy,
+                            @Nullable Bundle args) {
         this.id = id;
         this.clazz = clazz;
         this.strategy = strategy;
+        this.args = args;
     }
 
     @NonNull
@@ -26,7 +35,7 @@ abstract public class NavigationScreen implements ShowScreen, Matches<Navigation
     @Override
     public void show(Integer containerId, FragmentManager fragmentManager) {
         try {
-            strategy.show(id, clazz, containerId, fragmentManager);
+            strategy.show(id, clazz, containerId, fragmentManager, args);
         } catch (Exception e) {
             e.printStackTrace();
         }

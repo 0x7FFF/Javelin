@@ -1,8 +1,9 @@
-package com.smakhorin.easycodeandroidtask.core;
+package com.smakhorin.easycodeandroidtask.core.factory;
 
 import androidx.fragment.app.FragmentManager;
 
-import java.util.Iterator;
+import com.smakhorin.easycodeandroidtask.core.NavigationScreen;
+
 import java.util.List;
 
 public interface FragmentFactory {
@@ -39,7 +40,7 @@ public interface FragmentFactory {
             if (found == null) {
                 fragmentFactory.fragment(navigationScreen);
             } else {
-                found.show(containerId, fragmentManager);
+                navigationScreen.show(containerId, fragmentManager);
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.smakhorin.easycodeandroidtask.core.data;
 
-import androidx.annotation.Nullable;
 
 public interface HandleError {
     Exception handle(Exception error);

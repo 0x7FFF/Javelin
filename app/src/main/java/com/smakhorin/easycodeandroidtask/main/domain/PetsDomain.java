@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.smakhorin.easycodeandroidtask.core.ui.ItemUi;
-import com.smakhorin.easycodeandroidtask.core.ui.MainUi;
+import com.smakhorin.easycodeandroidtask.core.ui.MainFragmentUi;
 import com.smakhorin.easycodeandroidtask.main.data.pets.Pet;
 import com.smakhorin.easycodeandroidtask.main.presentation.adapter.PetUi;
 
@@ -55,7 +55,7 @@ public interface PetsDomain {
     interface Mapper<T> {
         T map(List<Pet> petList);
 
-        class Base implements Mapper<MainUi> {
+        class Base implements Mapper<MainFragmentUi> {
 
             private final Pet.Mapper<PetUi> petsMapper;
 
@@ -64,12 +64,12 @@ public interface PetsDomain {
             }
 
             @Override
-            public MainUi map(List<Pet> petList) {
+            public MainFragmentUi map(List<Pet> petList) {
                 List<ItemUi> uiList = new ArrayList<>(petList.size());
                 for (Pet pet : petList) {
                     uiList.add(pet.map(petsMapper));
                 }
-                return new MainUi.Base(uiList);
+                return new MainFragmentUi.Base(uiList);
             }
         }
     }

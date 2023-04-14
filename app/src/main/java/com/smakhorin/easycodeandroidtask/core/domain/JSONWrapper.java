@@ -17,9 +17,7 @@ public interface JSONWrapper {
     String getString(@NonNull String name) throws JSONException;
     boolean getBoolean(@NonNull String name) throws JSONException;
     JSONObject getJSONObject(@NonNull String name) throws JSONException;
-
     JSONWrapper getJSONWrapper(@NonNull String name) throws JSONException;
-
     JSONArray getJSONArray(@NonNull String name) throws JSONException;
 
     abstract class Abstract extends JSONObject implements JSONWrapper {

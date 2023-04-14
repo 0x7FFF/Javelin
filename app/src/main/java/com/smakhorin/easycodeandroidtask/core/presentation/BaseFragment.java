@@ -26,7 +26,7 @@ public abstract class BaseFragment<T extends ViewModel> extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = ((ProvideViewModel)requireActivity()).provideViewModel(viewModelClass(), this);
+        viewModel = ((ProvideViewModel) requireActivity()).provideViewModel(viewModelClass(), this);
     }
 
     @Nullable

@@ -10,7 +10,8 @@ import com.smakhorin.easycodeandroidtask.main.data.config.ConfigDataSource;
 import com.smakhorin.easycodeandroidtask.main.data.config.ConfigService;
 import com.smakhorin.easycodeandroidtask.main.data.pets.PetsDataSource;
 import com.smakhorin.easycodeandroidtask.main.data.pets.PetsService;
-import com.smakhorin.easycodeandroidtask.main.presentation.MainViewModel;
+import com.smakhorin.easycodeandroidtask.main.presentation.MainFragmentViewModel;
+import com.smakhorin.easycodeandroidtask.webscreen.WebFragmentViewModel;
 
 public class FeaturesDependencyContainer implements DependencyContainer {
 
@@ -38,8 +39,11 @@ public class FeaturesDependencyContainer implements DependencyContainer {
 
     @Override
     public <T extends ViewModel> Module<?> module(Class<T> clazz) {
-        if (clazz == MainViewModel.class) {
+        if (clazz == MainFragmentViewModel.class) {
             return new MainModule(coreModule, configDataSource, petsDataSource);
+        }
+        if (clazz == WebFragmentViewModel.class) {
+            return new WebModule(coreModule);
         }
 
         return dependencyContainer.module(clazz);

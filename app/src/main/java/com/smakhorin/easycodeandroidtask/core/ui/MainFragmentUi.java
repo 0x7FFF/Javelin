@@ -6,18 +6,16 @@ import com.smakhorin.easycodeandroidtask.core.Mapper;
 
 import java.util.List;
 
-public interface MainUi extends Mapper.Unit<Mapper.Unit<List<ItemUi>>> {
+public interface MainFragmentUi extends Mapper.Unit<Mapper.Unit<List<ItemUi>>> {
 
     List<ItemUi> getList();
 
-    class Base implements MainUi {
+    class Base implements MainFragmentUi {
         private final List<ItemUi> list;
 
         public Base(List<ItemUi> list) {
             this.list = list;
         }
-
-
 
         @Override
         public Void map(@NonNull Unit<List<ItemUi>> data) {

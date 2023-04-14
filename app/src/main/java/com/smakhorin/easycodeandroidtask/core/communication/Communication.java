@@ -17,12 +17,16 @@ public interface Communication {
 
     interface Mutable<T> extends Observe<T>, Update<T> {}
 
-    abstract class Abstract<T extends Object> implements Mutable<T> {
+    abstract class Abstract<T> implements Mutable<T> {
 
         MutableLiveData<T> mutableLiveData;
 
         public Abstract(MutableLiveData<T> mutableLiveData) {
             this.mutableLiveData = mutableLiveData;
+        }
+
+        public Abstract() {
+            new MutableLiveData<>();
         }
 
         @Override
@@ -31,7 +35,7 @@ public interface Communication {
         }
     }
 
-    abstract class UiUpdate<T extends Object> extends Abstract<T> {
+    abstract class UiUpdate<T> extends Abstract<T> {
 
         public UiUpdate(MutableLiveData<T> mutableLiveData) {
             super(mutableLiveData);
@@ -44,7 +48,7 @@ public interface Communication {
         }
     }
 
-    abstract class PostUpdate<T extends Object> extends Abstract<T> {
+    abstract class PostUpdate<T> extends Abstract<T> {
 
         public PostUpdate(MutableLiveData<T> mutableLiveData) {
             super(mutableLiveData);
@@ -61,14 +65,14 @@ public interface Communication {
         }
     }
 
-    abstract class SingleUiUpdate<T extends Object> extends UiUpdate<T> {
+    abstract class SingleUiUpdate<T> extends UiUpdate<T> {
 
         public SingleUiUpdate(MutableLiveData<T> mutableLiveData) {
             super(new SingleLiveEvent<T>());
         }
     }
 
-    abstract class SinglePostUpdate<T extends Object> extends PostUpdate<T> {
+    abstract class SinglePostUpdate<T> extends PostUpdate<T> {
 
         public SinglePostUpdate(MutableLiveData<T> mutableLiveData) {
             super(new SingleLiveEvent<T>());

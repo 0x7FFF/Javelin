@@ -13,18 +13,18 @@ import com.smakhorin.easycodeandroidtask.core.communication.NavigationCommunicat
 import com.smakhorin.easycodeandroidtask.core.communication.ProgressCommunication;
 import com.smakhorin.easycodeandroidtask.main.presentation.MainNavigationScreen;
 
-public class StartActivityViewModel extends BackPress.Activity.ViewModel<String> {
+public class MainActivityViewModel extends BackPress.Activity.ViewModel<String> {
     private final NavigationCommunication.Mutable navigationCommunication;
     private final ProgressCommunication.Mutable progressCommunication;
 
-    public StartActivityViewModel(CanGoBack canGoBack,
-                                  @NonNull NavigationCommunication.Mutable navigationCommunication,
-                                  @NonNull ProgressCommunication.Mutable progressCommunication,
-                                  @NonNull GlobalErrorCommunication.Mutable communication) {
+    public MainActivityViewModel(CanGoBack canGoBack,
+                                 @NonNull NavigationCommunication.Mutable navigationCommunication,
+                                 @NonNull ProgressCommunication.Mutable progressCommunication,
+                                 @NonNull GlobalErrorCommunication.Mutable communication) {
         super(canGoBack, communication);
         this.navigationCommunication = navigationCommunication;
         navigationCommunication.map(
-                new MainNavigationScreen()
+            new MainNavigationScreen()
         );
         this.progressCommunication = progressCommunication;
     }

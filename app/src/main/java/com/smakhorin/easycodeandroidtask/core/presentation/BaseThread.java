@@ -1,6 +1,5 @@
 package com.smakhorin.easycodeandroidtask.core.presentation;
 
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.Lock;
 
 public class BaseThread extends Thread {

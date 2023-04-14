@@ -9,8 +9,11 @@ import com.smakhorin.easycodeandroidtask.core.ui.ItemUi;
 import com.smakhorin.easycodeandroidtask.core.ui.adapter.GenericViewHolder;
 
 public class PetViewHolder extends GenericViewHolder<ItemUi> {
-    public PetViewHolder(@NonNull View itemView) {
+    OnPetClick onItemClick;
+
+    public PetViewHolder(@NonNull View itemView, OnPetClick onItemClick) {
         super(itemView);
+        this.onItemClick = onItemClick;
     }
 
     @Override
@@ -20,5 +23,6 @@ public class PetViewHolder extends GenericViewHolder<ItemUi> {
             itemView.findViewById(R.id.textViewPetName),
             itemView.findViewById(R.id.textViewDateAdded)
         );
+        itemView.setOnClickListener(v -> onItemClick.onClick(item.content()));
     }
 }

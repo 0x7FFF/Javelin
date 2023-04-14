@@ -4,7 +4,7 @@ package com.smakhorin.easycodeandroidtask.main.domain;
 import androidx.annotation.Nullable;
 
 import com.smakhorin.easycodeandroidtask.core.ui.ItemUi;
-import com.smakhorin.easycodeandroidtask.core.ui.MainUi;
+import com.smakhorin.easycodeandroidtask.core.ui.MainFragmentUi;
 import com.smakhorin.easycodeandroidtask.main.data.TimeIntervalNow;
 import com.smakhorin.easycodeandroidtask.main.presentation.DisplayDialog;
 import com.smakhorin.easycodeandroidtask.main.presentation.adapter.ButtonsUi;
@@ -51,7 +51,7 @@ public interface ConfigDomain {
     interface Mapper<T> {
         T map(Boolean isChatEnabled, Boolean isCallEnabled, String workHours);
 
-        class Base implements Mapper<MainUi> {
+        class Base implements Mapper<MainFragmentUi> {
 
             private final ConfigTimeIntervalParser configTimeIntervalParser;
 
@@ -66,11 +66,12 @@ public interface ConfigDomain {
             }
 
             @Override
-            public MainUi map(Boolean isChatEnabled, Boolean isCallEnabled, String workHours) {
+            public MainFragmentUi map(Boolean isChatEnabled, Boolean isCallEnabled, String workHours) {
                 ArrayList<ItemUi> list = new ArrayList<>();
-                list.add(new ButtonsUi(isCallEnabled, isChatEnabled, displayDialog));
-                list.add(new WorkingHoursUi(configTimeIntervalParser.parse(workHours).matches(timeIntervalNow.now())));
-                return new MainUi.Base(list);
+                Boolean isWithinWorkingHours = configTimeIntervalParser.parse(workHours).matches(timeIntervalNow.now());
+                list.add(new ButtonsUi(isCallEnabled, isChatEnabled, isWithinWorkingHours, displayDialog));
+                list.add(new WorkingHoursUi());
+                return new MainFragmentUi.Base(list);
             }
         }
     }

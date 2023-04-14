@@ -7,9 +7,10 @@ import com.smakhorin.easycodeandroidtask.main.presentation.MainFragment;
 public class MainNavigationScreen extends NavigationScreen {
     public MainNavigationScreen() {
         super(
-                "MainScreen",
-                MainFragment.class,
-                ShowStrategy.REPLACE.INSTANCE
+            "MainScreen",
+            MainFragment.class,
+            ShowStrategy.REPLACE.INSTANCE,
+            null
         );
     }
 }

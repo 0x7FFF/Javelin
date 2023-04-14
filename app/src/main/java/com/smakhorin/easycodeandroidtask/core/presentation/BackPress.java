@@ -13,7 +13,7 @@ public interface BackPress {
 
         @Override
         public void onBackPressed() {
-            if(viewModel.canGoBack()) {
+            if (viewModel.canGoBack()) {
                 super.onBackPressed();
             }
         }
